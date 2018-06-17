@@ -24,7 +24,7 @@ Stop Redis:
 
 Note: Remember to start redis as a service.
 
-    git pull https://github.com/seal-7/Crawler.git
+    git clone https://github.com/seal-7/Crawler.git
     cd Crawler
     npm install
     node app.js
