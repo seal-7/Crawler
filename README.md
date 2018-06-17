@@ -20,7 +20,7 @@ Stop Redis:
 
     docker stop `docker ps -q -f name=redis`    
 
-# Install with:
+# Install locally:
 
 Note: Remember to start redis as a service.
 
