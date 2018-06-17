@@ -1,3 +1,3 @@
 var crawler = require('./crawler');
 
-crawler.startCrawling('http://medium.com/', 10);
+crawler.startCrawling('http://medium.com/', 5);

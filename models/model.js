@@ -1,5 +1,5 @@
 var redis = require("redis"),
-    client = redis.createClient();
+    client = redis.createClient({host: 'redis', port:'6379'});
 
 exports.checkConnection = function () {
     return new Promise(function (resolve, reject) {
