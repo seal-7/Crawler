@@ -14,4 +14,4 @@ docker pull redis
 docker run --name redis-node -d redis
 
 #Run crawler and link it to redis container
-docker run --name crawler-redis --link redis-node:redis crawler
+docker run --name crawler-redis --link redis-node:redis seal7/crawler
