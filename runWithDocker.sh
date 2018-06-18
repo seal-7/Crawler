@@ -5,7 +5,7 @@ docker rm redis-node
 docker rm crawler-redis
 
 #Get docker image for crawler
-docker run --name redis-node -d redis
+docker pull seal7/crawler
 
 #Get docker image for redis
 docker pull redis
