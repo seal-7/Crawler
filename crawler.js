@@ -37,7 +37,12 @@ var Crawler = (function () {
                         var urlWithoutParams = request.url.split('?')[0];
                         console.log("New Url:"+ urlWithoutParams + " \nCurrent requests in progress " + (Crawler.maxSize-Crawler.canHandleRequest));
                         redis.setValue(request.host, urlWithoutParams, 1,  scrappy.getParams(request.url));
-                        rp(request.url).then(function (html) {
+
+                        var options = {
+                            uri: request.url,
+                            simple: false,
+                        };
+                        rp(options).then(function (html) {
 
                             var urls = scrappy.getAllUrls(request.host,html);
                             urls.forEach((url) => {
@@ -54,9 +59,8 @@ var Crawler = (function () {
                                 }
                             }
 
-                        }).catch(function (err) {
-                            console.error("Error Encountered in doing request: line 58 crawler.js\n");
-                            throw err;
+                        }).catch(function (reason) {
+                            console.error("For url: " + reason.options.uri + "\n" + reason.cause.message);
                         }).finally(function () {
                             if(Crawler.requestQueue.length > 0){
                                 Crawler.processRequest();
@@ -71,7 +75,7 @@ var Crawler = (function () {
 
                     }
                 }).catch(function (err) {
-                    console.error("Error getting value from Redis! : line 74 crawler.js")
+                    console.error("Error getting value from Redis! : line 74 crawler.js");
                     throw err;
                 }).then(function () {
                     //Finally Block

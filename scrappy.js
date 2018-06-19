@@ -15,6 +15,7 @@ exports.getAllUrls = function (host,html) {
 
 exports.getParams = function (url) {
 
+    url=url.replace(/&[a-z]+;/g, '');
     var paramString = url.split('?');
     if(paramString.length >= 2){
        var params = paramString[1].split('&').map((param) => {
